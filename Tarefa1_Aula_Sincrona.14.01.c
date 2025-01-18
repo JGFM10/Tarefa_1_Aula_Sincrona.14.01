@@ -13,29 +13,27 @@
 #define COL_4 1
 
 // Definição dos pinos dos LEDs/Buzzer
-#define LED_VERMELHO 13   // LED vermelho
-#define LED_AZUL 12       // LED ciano
-#define LED_VERDE 11      // LED verde
-#define Buzzer 10      // Buzzer
-
+#define LED_VERMELHO 13 // LED vermelho
+#define LED_AZUL 12     // LED ciano
+#define LED_VERDE 11    // LED verde
+#define Buzzer 10       // Buzzer
 
 // Mapeamento do teclado matricial
 const char key_map[4][4] = {
     {'1', '2', '3', 'A'},
     {'4', '5', '6', 'B'},
     {'7', '8', '9', 'C'},
-    {'*', '0', '#', 'D'}
-};
+    {'*', '0', '#', 'D'}};
 
-//Declaração de funções
+// Declaração de funções
 
-//void control_ledsebuzz(char key);
+void control_ledsebuzz(char key);
 char get_key();
 void keypad_init();
 void output_init();
 
-
-int main() {
+int main()
+{
     stdio_init_all();
 
     // Inicializa o teclado e os LEDs
@@ -43,10 +41,12 @@ int main() {
     output_init();
     printf("Teclado Matricial 4x4 - Controle de LEDs\n");
 
-    while (true) {
+    while (true)
+    {
         char key = get_key(); // Lê a tecla pressionada
-            printf("Tecla pressionada: %c\n", key);
-            //control_ledsebuzz(key); // Controla os LEDs com base na tecla
+        printf("Tecla pressionada: %c\n", key);
+        control_ledsebuzz(key); // Controla os LEDs com base na tecla
+
         sleep_ms(100); // Pequena pausa para evitar leituras repetidas
     }
 
@@ -72,21 +72,33 @@ void output_init()
 
 // Função para controlar os LEDs
 
-//void control_ledsebuzz(char key) {
-
- // }
+void control_ledsebuzz(char key)
+{
+    //Acender o led vermelho
+    if (key == 'A')
+    {
+        gpio_put(LED_VERMELHO, true);
+        sleep_ms(1000);
+        gpio_put(LED_VERMELHO, false);
+    }
+}
 
 // Função para ler a tecla pressionada
-char get_key() {
+char get_key()
+{
     int linhas[] = {LIN_1, LIN_2, LIN_3, LIN_4};
     int colunas[] = {COL_1, COL_2, COL_3, COL_4};
 
-    for (int l = 0; l < 4; l++) {
+    for (int l = 0; l < 4; l++)
+    {
         gpio_put(linhas[l], false); // Ativa a linha atual
-        for (int c = 0; c < 4; c++) {
-            if (!gpio_get(colunas[c])) { // Verifica se a coluna está em nível baixo
+        for (int c = 0; c < 4; c++)
+        {
+            if (!gpio_get(colunas[c]))
+            {                 // Verifica se a coluna está em nível baixo
                 sleep_ms(10); // Debounce
-                if (!gpio_get(colunas[c])) { // Confirma o pressionamento
+                if (!gpio_get(colunas[c]))
+                {                              // Confirma o pressionamento
                     gpio_put(linhas[l], true); // Desativa a linha
                     return key_map[l][c];
                 }
@@ -98,20 +110,23 @@ char get_key() {
 }
 
 // Inicializa os pinos do teclado
-void keypad_init() {
+void keypad_init()
+{
     // Arrays com os pinos das linhas e colunas
     int linhas[] = {LIN_1, LIN_2, LIN_3, LIN_4};
     int colunas[] = {COL_1, COL_2, COL_3, COL_4};
 
     // Configura as linhas como saída e inicializa em nível alto
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++)
+    {
         gpio_init(linhas[i]);
         gpio_set_dir(linhas[i], GPIO_OUT);
         gpio_put(linhas[i], true); // Nível alto
     }
 
     // Configura as colunas como entrada com pull-up
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++)
+    {
         gpio_init(colunas[i]);
         gpio_set_dir(colunas[i], GPIO_IN);
         gpio_pull_up(colunas[i]); // Ativa pull-up
