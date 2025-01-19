@@ -90,14 +90,14 @@ void control_ledsebuzz(char key)
     }
 
 // Acender o LED azul por 3 segundos
-    if(key == '2'){
+    else if(key == '2'){
         gpio_put(LED_AZUL, true);
         sleep_ms(3000);
         gpio_put(LED_AZUL, false);
     }
 
     // Acender o LED verde por 3 segundos
-    else if (key == 'C')
+    else if (key == '3')
     {
         gpio_put(LED_VERDE, true);  // Acende o LED verde
         sleep_ms(3000);             // Aguarda 3 segundos
@@ -105,7 +105,7 @@ void control_ledsebuzz(char key)
     }
 
     // Acionar o buzzer quando a tecla '9' for pressionada
-    else if (key == '9')
+    else if (key == 'A')
     {
         int i = 0;
         while (i < 60)
@@ -114,6 +114,17 @@ void control_ledsebuzz(char key)
             sleep_ms(50); 
             gpio_put(Buzzer, false);
             i++;
+        }
+    }
+
+    else if(key == '4'){
+        int a = 0;
+        while(a < 6){
+            gpio_put(LED_VERMELHO, true);
+            sleep_ms(1000);
+            gpio_put(LED_VERMELHO, false);
+            sleep_ms(1000);
+            a++;
         }
     }
 }
