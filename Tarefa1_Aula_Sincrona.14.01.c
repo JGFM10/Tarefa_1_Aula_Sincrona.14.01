@@ -81,6 +81,14 @@ void control_ledsebuzz(char key)
         sleep_ms(1000);
         gpio_put(LED_VERMELHO, false);
     }
+
+    // Acender o LED verde por 3 segundos
+    if (key == 'C')
+    {
+        gpio_put(LED_VERDE, true);  // Acende o LED verde
+        sleep_ms(3000);             // Aguarda 3 segundos
+        gpio_put(LED_VERDE, false); // Apaga o LED verde
+    }
 }
 
 // Função para ler a tecla pressionada
