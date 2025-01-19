@@ -15,6 +15,7 @@ As ações realizadas pelo sistema são:
 - **Tecla '4'**: Acende o LED azul por 3 segundos, apaga, espera 2 segundos e acende novamente por 3 segundos.
 - **Tecla '5'**: Acende o LED verde por 3 segundos.
 - **Tecla '6'**: Acende LED verde por 3 segundos, apaga por um segundo, pisca 4 vezes com intervalo de 1 segundo para aceso e apagado.
+- **Tecla '8'**: Acende os 3 leds por 3 segundos, apaga, espera 2 segundos. 8 vezes
 - **Tecla '9'**: Ativa o buzzer, emitindo um som intermitente por 3 segundos.
 - **Tecla '0'**: Encerra o programa.
 
