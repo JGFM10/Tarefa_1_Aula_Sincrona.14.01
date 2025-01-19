@@ -81,7 +81,7 @@ void output_init()
 // Função para controlar os LEDs e buzzer
 void control_ledsebuzz(char key)
 {
-    // Acender o led vermelho
+    // Acender o LED vermelho por 3 segundos
     if (key == '1')
     {
         gpio_put(LED_VERMELHO, true);
@@ -89,7 +89,15 @@ void control_ledsebuzz(char key)
         gpio_put(LED_VERMELHO, false);
     }
 
-    // Acionar o buzzer quando a tecla '#' for pressionada
+    // Acender o LED verde por 3 segundos
+    else if (key == 'C')
+    {
+        gpio_put(LED_VERDE, true);  // Acende o LED verde
+        sleep_ms(3000);             // Aguarda 3 segundos
+        gpio_put(LED_VERDE, false); // Apaga o LED verde
+    }
+
+    // Acionar o buzzer quando a tecla '9' for pressionada
     else if (key == '9')
     {
         int i = 0;
@@ -100,8 +108,9 @@ void control_ledsebuzz(char key)
             gpio_put(Buzzer, false);
             i++;
         }
-    } // Totalizando 3 segundo com o buzzer ligado
+    }
 }
+
 
 // Função para ler a tecla pressionada
 char get_key()
