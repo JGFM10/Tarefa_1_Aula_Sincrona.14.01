@@ -23,8 +23,7 @@ const char key_map[4][4] = {
     {'1', '2', '3', 'A'},
     {'4', '5', '6', 'B'},
     {'7', '8', '9', 'C'},
-    {'*', '0', '#', 'D'}
-};
+    {'*', '0', '#', 'D'}};
 
 // Declaração de funções
 void control_ledsebuzz(char key);
@@ -89,6 +88,18 @@ void control_ledsebuzz(char key)
         gpio_put(LED_VERMELHO, false);
     }
 // 2 para pulsos luminosos vermelhos
+  else if (key == '2')
+    {
+        int a = 0;
+        while (a < 6)
+        {
+            gpio_put(LED_VERMELHO, true);
+            sleep_ms(1000);
+            gpio_put(LED_VERMELHO, false);
+            sleep_ms(1000);
+            a++;
+        }
+    }
 // Acender o LED azul por 3 segundos
     if(key == '3'){
         gpio_put(LED_AZUL, true);
@@ -96,17 +107,17 @@ void control_ledsebuzz(char key)
         gpio_put(LED_AZUL, false);
     }
 
- // Acender o LED azul por 3 segundos, apagar, esperar 2 segundos e acender novamente por 3 segundos
+    // Acender o LED azul por 3 segundos, apagar, esperar 2 segundos e acender novamente por 3 segundos
     else if (key == '4')
     {
-        gpio_put(LED_AZUL, true);  // Acende o LED azul
-        sleep_ms(3000);            // Aguarda 3 segundos
+        gpio_put(LED_AZUL, true); // Acende o LED azul
+        sleep_ms(3000);           // Aguarda 3 segundos
 
         gpio_put(LED_AZUL, false); // Apaga o LED azul
         sleep_ms(2000);            // Espera 2 segundos
 
-        gpio_put(LED_AZUL, true);  // Acende novamente o LED azul
-        sleep_ms(3000);            // Aguarda mais 3 segundos
+        gpio_put(LED_AZUL, true); // Acende novamente o LED azul
+        sleep_ms(3000);           // Aguarda mais 3 segundos
 
         gpio_put(LED_AZUL, false); // Apaga o LED azul novamente
     }
@@ -119,23 +130,18 @@ void control_ledsebuzz(char key)
         gpio_put(LED_VERDE, false); // Apaga o LED verde
     }
 
-// Acende LED verde por 3 segundos, apaga por um segundo, pisca 4 vezes com intervalo de 1 segundo para aceso e apagado
+    // Acende LED verde por 3 segundos, apaga por um segundo, pisca 4 vezes com intervalo de 1 segundo para aceso e apagado
     else if (key == '6')
     {
-        gpio_put(LED_VERDE, true);
-        sleep_ms(3000);
-        gpio_put(LED_VERDE, false);
-        sleep_ms(1000);
-         
         int blink_count = 0;
-        while(blink_count < 4)
+        while (blink_count < 4)
         {
             gpio_put(LED_VERDE, true);
             sleep_ms(1000);
             gpio_put(LED_VERDE, false);
             sleep_ms(1000);
 
-            blink_count ++;
+            blink_count++;
         }
     }
     else if (key == '8') // Acender os 3 leds por 3 segundos e esperar 2 segundos x8
@@ -163,13 +169,12 @@ void control_ledsebuzz(char key)
         while (i < 60)
         {
             gpio_put(Buzzer, true);
-            sleep_ms(50); 
+            sleep_ms(50);
             gpio_put(Buzzer, false);
             i++;
         }
     }
 }
-
 
 // Função para ler a tecla pressionada
 char get_key()
