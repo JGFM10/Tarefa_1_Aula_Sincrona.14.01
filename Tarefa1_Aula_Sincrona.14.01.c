@@ -109,6 +109,20 @@ void control_ledsebuzz(char key)
             i++;
         }
     }
+    // Acender o LED azul por 3 segundos, apagar, esperar 2 segundos e acender novamente por 3 segundos
+    else if (key == '2')
+    {
+        gpio_put(LED_AZUL, true);  // Acende o LED azul
+        sleep_ms(3000);            // Aguarda 3 segundos
+
+        gpio_put(LED_AZUL, false); // Apaga o LED azul
+        sleep_ms(2000);            // Espera 2 segundos
+
+        gpio_put(LED_AZUL, true);  // Acende novamente o LED azul
+        sleep_ms(3000);            // Aguarda mais 3 segundos
+
+        gpio_put(LED_AZUL, false); // Apaga o LED azul novamente
+    }
 }
 
 
