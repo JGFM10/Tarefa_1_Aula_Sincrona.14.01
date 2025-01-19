@@ -144,6 +144,20 @@ void control_ledsebuzz(char key)
             blink_count++;
         }
     }
+    // Acender os 3 LEDs por 3 segundos
+    else if (key == '7')
+    {
+        // Acender os 3 LEDs por 3 segundos
+        gpio_put(LED_VERMELHO, true);
+        gpio_put(LED_AZUL, true);
+        gpio_put(LED_VERDE, true);
+        sleep_ms(3000);
+
+        // Apagar os LEDs
+        gpio_put(LED_VERMELHO, false);
+        gpio_put(LED_AZUL, false);
+        gpio_put(LED_VERDE, false);
+    }
     else if (key == '8') // Acender os 3 leds por 3 segundos e esperar 2 segundos x8
     {
         for (int i = 0; i < 8; i++) // Repetir 8 vezes
