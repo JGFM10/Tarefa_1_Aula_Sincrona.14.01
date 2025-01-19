@@ -23,10 +23,10 @@ const char key_map[4][4] = {
     {'1', '2', '3', 'A'},
     {'4', '5', '6', 'B'},
     {'7', '8', '9', 'C'},
-    {'*', '0', '#', 'D'}};
+    {'*', '0', '#', 'D'}
+};
 
 // Declaração de funções
-
 void control_ledsebuzz(char key);
 char get_key();
 void keypad_init();
@@ -45,7 +45,15 @@ int main()
     {
         char key = get_key(); // Lê a tecla pressionada
         printf("Tecla pressionada: %c\n", key);
-        control_ledsebuzz(key); // Controla os LEDs com base na tecla
+
+        // Se a tecla pressionada for '0', sair do loop
+        if (key == '0')
+        {
+            printf("Loop interrompido.\n");
+            break; // Sai do loop
+        }
+
+        control_ledsebuzz(key); // Controla os LEDs e o buzzer com base na tecla
 
         sleep_ms(100); // Pequena pausa para evitar leituras repetidas
     }
@@ -70,17 +78,29 @@ void output_init()
     gpio_put(Buzzer, false);
 }
 
-// Função para controlar os LEDs
-
+// Função para controlar os LEDs e buzzer
 void control_ledsebuzz(char key)
 {
-    //Acender o led vermelho
-    if (key == 'A')
+    // Acender o led vermelho
+    if (key == '1')
     {
         gpio_put(LED_VERMELHO, true);
-        sleep_ms(1000);
+        sleep_ms(3000);
         gpio_put(LED_VERMELHO, false);
     }
+
+    // Acionar o buzzer quando a tecla '#' for pressionada
+    else if (key == '9')
+    {
+        int i = 0;
+        while (i < 60)
+        {
+            gpio_put(Buzzer, true);
+            sleep_ms(50); 
+            gpio_put(Buzzer, false);
+            i++;
+        }
+    } // Totalizando 3 segundo com o buzzer ligado
 }
 
 // Função para ler a tecla pressionada
