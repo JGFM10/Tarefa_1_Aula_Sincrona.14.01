@@ -33,3 +33,5 @@ A função output_init() inicializa os pinos dos LEDs e do buzzer como saídas e
 ## 6. Loop Principal
 No loop principal (main()), o programa lê continuamente as teclas pressionadas.
 Dependendo da tecla pressionada, o programa executa a ação correspondente até que a tecla '0' seja pressionada, encerrando o programa.
+
+LINK PARA O VIDEO EXPLICATIVO: https://youtu.be/VbBnjYYMClM
