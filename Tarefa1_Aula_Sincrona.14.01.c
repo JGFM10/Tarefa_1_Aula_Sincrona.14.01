@@ -88,20 +88,55 @@ void control_ledsebuzz(char key)
         sleep_ms(3000);
         gpio_put(LED_VERMELHO, false);
     }
-
+// 2 para pulsos luminosos vermelhos
 // Acender o LED azul por 3 segundos
-    if(key == '2'){
+    if(key == '3'){
         gpio_put(LED_AZUL, true);
         sleep_ms(3000);
         gpio_put(LED_AZUL, false);
     }
 
+ // Acender o LED azul por 3 segundos, apagar, esperar 2 segundos e acender novamente por 3 segundos
+    else if (key == '4')
+    {
+        gpio_put(LED_AZUL, true);  // Acende o LED azul
+        sleep_ms(3000);            // Aguarda 3 segundos
+
+        gpio_put(LED_AZUL, false); // Apaga o LED azul
+        sleep_ms(2000);            // Espera 2 segundos
+
+        gpio_put(LED_AZUL, true);  // Acende novamente o LED azul
+        sleep_ms(3000);            // Aguarda mais 3 segundos
+
+        gpio_put(LED_AZUL, false); // Apaga o LED azul novamente
+    }
+
     // Acender o LED verde por 3 segundos
-    else if (key == 'C')
+    else if (key == '5')
     {
         gpio_put(LED_VERDE, true);  // Acende o LED verde
         sleep_ms(3000);             // Aguarda 3 segundos
         gpio_put(LED_VERDE, false); // Apaga o LED verde
+    }
+
+// Acende LED verde por 3 segundos, apaga por um segundo, pisca 4 vezes com intervalo de 1 segundo para aceso e apagado
+    else if (key == '6')
+    {
+        gpio_put(LED_VERDE, true);
+        sleep_ms(3000);
+        gpio_put(LED_VERDE, false);
+        sleep_ms(1000);
+         
+        int blink_count = 0;
+        while(blink_count < 4)
+        {
+            gpio_put(LED_VERDE, true);
+            sleep_ms(1000);
+            gpio_put(LED_VERDE, false);
+            sleep_ms(1000);
+
+            blink_count ++;
+        }
     }
 
     // Acionar o buzzer quando a tecla '9' for pressionada
@@ -115,20 +150,6 @@ void control_ledsebuzz(char key)
             gpio_put(Buzzer, false);
             i++;
         }
-    }
-    // Acender o LED azul por 3 segundos, apagar, esperar 2 segundos e acender novamente por 3 segundos
-    else if (key == '3')
-    {
-        gpio_put(LED_AZUL, true);  // Acende o LED azul
-        sleep_ms(3000);            // Aguarda 3 segundos
-
-        gpio_put(LED_AZUL, false); // Apaga o LED azul
-        sleep_ms(2000);            // Espera 2 segundos
-
-        gpio_put(LED_AZUL, true);  // Acende novamente o LED azul
-        sleep_ms(3000);            // Aguarda mais 3 segundos
-
-        gpio_put(LED_AZUL, false); // Apaga o LED azul novamente
     }
 }
 
