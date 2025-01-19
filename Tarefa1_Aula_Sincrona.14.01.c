@@ -89,6 +89,13 @@ void control_ledsebuzz(char key)
         gpio_put(LED_VERMELHO, false);
     }
 
+// Acender o LED azul por 3 segundos
+    if(key == '2'){
+        gpio_put(LED_AZUL, true);
+        sleep_ms(3000);
+        gpio_put(LED_AZUL, false);
+    }
+
     // Acender o LED verde por 3 segundos
     else if (key == 'C')
     {
