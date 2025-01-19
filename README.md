@@ -1,4 +1,4 @@
-# Resumo do Funcionamento do Código
+# Funcionamento do Código
 
 Este código em C é projetado para controlar LEDs e um buzzer utilizando um teclado matricial 4x4 em conjunto com a Raspberry Pi Pico. Ele permite que o usuário interaja com o sistema pressionando teclas no teclado matricial, onde cada tecla executa uma ação específica, como acender LEDs ou ativar o buzzer. Abaixo estão os principais pontos de funcionamento:
 
